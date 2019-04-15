@@ -6,9 +6,8 @@ services:
       volumes:
         - db_data:/var/lib/mysql
       volumes:
-        # mysql backup
         - ./wp-content/data/banco-de-dados.sql:/docker-entrypoint-initdb.d/banco-de-dados.sql
-      restart: unless-stopped 
+      restart: always
       environment:
         MYSQL_ROOT_PASSWORD: wordpress
         MYSQL_DATABASE: banco-de-dados
@@ -28,7 +27,7 @@ services:
         - ./wp-content/uploads/:/var/www/html/wp-content/uploads/
       ports:
        - "8000:80"
-      restart: unless-stopped 
+      restart: always 
       environment:
         WORDPRESS_DB_HOST: db:3306
         WORDPRESS_DB_USER: wordpress
